@@ -17,7 +17,7 @@ local CLOUDMUSIC_VER = "1st Gen Final 20211119" -- DO NOT modify unless you know
 if CLIENT then
     local LANGUAGES = {
         ["zh-CN"] = {
-            ["title"] = "网易云音乐",
+            ["title"] = "网易云音乐 - 非官方延续版",
             ["about"] = "关于",
             ["success"] = "成功",
             ["warning"] = "警告",
@@ -47,7 +47,7 @@ if CLIENT then
             ["bottom_left"] = "左下角",
             ["bottom_right"] = "右下角",
             ["login_title"] = "登录网易云音乐账号",
-            ["use_phone"] = "使用手机号登录",
+            ["use_phone"] = "手机号登录暂不可用",
             ["use_email"] = "使用邮箱登录",
             ["phone"] = "手机号",
             ["email"] = "电子邮件",
@@ -216,7 +216,7 @@ if CLIENT then
             ["bottom_left"] = "左下角",
             ["bottom_right"] = "右下角",
             ["login_title"] = "登錄網易雲音樂帳號",
-            ["use_phone"] = "使用手機號碼登錄",
+            ["use_phone"] = "手機號碼登錄暫不可用",
             ["use_email"] = "使用Email登陸",
             ["phone"] = "手機號碼",
             ["email"] = "Email",
@@ -385,7 +385,7 @@ if CLIENT then
             ["bottom_left"] = "Bottom Left",
             ["bottom_right"] = "Bottom Right",
             ["login_title"] = "Login Netease Cloud Music",
-            ["use_phone"] = "Use Phone Number",
+            ["use_phone"] = "Phone Number Not Available",
             ["use_email"] = "Use Email",
             ["phone"] = "Phone Number",
             ["email"] = "Email",
@@ -941,7 +941,7 @@ if CLIENT then
             lrcStartPos = 1
             transLrcStartPos = 1
             Print("Fetching the lyric of "..currentPlaying.Name)
-            http.Fetch("http://gcm.tenmahw.com/resolve/lyric/?u="..LocalPlayer():SteamID64().."&id="..CloudMusic.CurrentPlaying.ID, function(body)
+            http.Fetch("http://api.nekogan.com/lyric.php?id="..CloudMusic.CurrentPlaying.ID, function(body)
                 local json = util.JSONToTable(body)
                 if not json then
                     AddMessage(GetText("lyricfailed",{"name",currentPlaying.Name}),nil,3000,"error")
@@ -1108,11 +1108,14 @@ if CLIENT then
         end
         local function GetSongURL(id,callback,finally,share)
             if GetSettings("CloudMusicUseServer") then
-                TokenRequest("https://gcm.tenmahw.com/song/url?u="..LocalPlayer():SteamID64().."&id="..id..(share == nil and "" or "&share="..share),function(body)
+                TokenRequest("https://ncm.nekogan.com/song/url?id="..id..(share == nil and "" or "&share="..share),function(body)
                     local result = util.JSONToTable(body)
                     if not result or not result["data"] or not result["data"][1] or not result["data"][1]["url"] then
                         if type(callback) == "function" then
-                            callback("https://music.163.com/song/media/outer/url?id="..id..".mp3")
+                            http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
+                                data = util.JSONToTable(b)["data"][0]
+                                callback(data["url"])
+                            end)
                         end
                         if type(finally) == "function" then
                             finally()
@@ -1127,7 +1130,10 @@ if CLIENT then
                     end
                 end,function()
                     if type(callback) == "function" then
-                        callback("https://music.163.com/song/media/outer/url?id="..id..".mp3")
+                        http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
+                            data = util.JSONToTable(b)["data"][0]
+                            callback(data["url"])
+                        end)
                     end
                     if type(finally) == "function" then
                         finally()
@@ -1135,7 +1141,10 @@ if CLIENT then
                 end)
             else
                 if type(callback) == "function" then
-                    callback("https://music.163.com/song/media/outer/url?id="..id..".mp3")
+                    http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
+                        data = util.JSONToTable(b)["data"][0]
+                        callback(data["url"])
+                    end)
                 end
                 if type(finally) == "function" then
                     finally()
@@ -1341,7 +1350,7 @@ if CLIENT then
                 CloudMusic.Login:SetVisible(true)
             else
                 Print("User token detected, try to fetch user info")
-                TokenRequest("https://gcm.tenmahw.com/login/status?u="..LocalPlayer():SteamID64().."&t="..os.time(),function(body)
+                TokenRequest("https://ncm.nekogan.com/login/status?u="..LocalPlayer():SteamID64().."&t="..os.time(),function(body)
                     userDetail = util.JSONToTable(body)["data"]
                     if not userDetail or not userDetail["profile"] or (userDetail["code"] ~= 200 and userDetail["code"] ~= 301) then
                         AddMessage(GetText("userinfofailed"),nil,3000,"error")
@@ -1463,7 +1472,7 @@ if CLIENT then
                     end
                     CloudMusic.User:CM_SetI18N("welcome")
                     CloudMusic.User:SetVisible(true)
-                    TokenRequest("https://gcm.tenmahw.com/user/detail?u="..LocalPlayer():SteamID64().."&uid="..userDetail["userId"],function(body)
+                    TokenRequest("https://ncm.nekogan.com/user/detail?u="..LocalPlayer():SteamID64().."&uid="..userDetail["userId"],function(body)
                         local json = util.JSONToTable(body)
                         if not json or json["code"] ~= 200 then
                             return
@@ -1791,9 +1800,12 @@ if CLIENT then
             panel.ToggleMode = vgui.Create("DButton",panel)
             panel.ToggleMode:SetPos(10,50)
             panel.ToggleMode:SetSize(350-20,20)
+            panel.ToggleMode:SetDisabled(true)
+            // panel.ToggleMode:SetText("手机号登录暂不可用")
             function panel.ToggleMode:Think()
                 if panel.Mode == "Email" then
                     self:CM_SetI18N("use_phone")
+                    // self:SetText("手机号登录暂不可用")
                 elseif panel.Mode == "Phone" then
                     self:CM_SetI18N("use_email")
                 end
@@ -1861,7 +1873,7 @@ if CLIENT then
                 self:SetDisabled(true)
                 Print("Logging in...")
                 if panel.Mode == "Email" then
-                    TokenRequest("https://gcm.tenmahw.com/login?u="..LocalPlayer():SteamID64().."&email="..panel.Username:GetValue():JavascriptSafe().."&password="..panel.Password:GetValue():JavascriptSafe().."&u="..LocalPlayer():SteamID64(),function(body)
+                    TokenRequest("https://ncm.nekogan.com/login?u="..LocalPlayer():SteamID64().."&email="..panel.Username:GetValue():JavascriptSafe().."&password="..panel.Password:GetValue():JavascriptSafe().."&u="..LocalPlayer():SteamID64(),function(body)
                         local result = util.JSONToTable(body)
                         if not result or (result["code"] ~= 200 and not result["msg"]) then
                             SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
@@ -1889,33 +1901,34 @@ if CLIENT then
                         self:SetDisabled(false)
                     end)
                 else
-                    TokenRequest("https://gcm.tenmahw.com/login/cellphone?u="..LocalPlayer():SteamID64().."&phone="..panel.Username:GetValue():JavascriptSafe().."&password="..panel.Password:GetValue():JavascriptSafe().."&countrycode="..panel.PhoneAreaNum:GetValue().."&u="..LocalPlayer():SteamID64(),function(body)
-                        local result = util.JSONToTable(body)
-                        if result == nil then
-                            SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
-                            return
-                        end
-                        if result["code"] ~= 200 then
-                            SetDMUISkin(Derma_Message(GetText("loginfailed").."\n"..result["msg"], GetText("error"), GetText("ok")))
-                            return
-                        end
-                        SetSettings("CloudMusicUserToken",result["token"])
-                        SetDMUISkin(Derma_Message(GetText("loginsuccess",{"name",result["profile"]["nickname"]}), GetText("welcome"), GetText("ok")))
-                        InitUserInfo()
-                        HideOverlay()
-                        Print("User has logged in")
-                        panel:Remove()
-                    end,function()
-                        SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
-                        Print("Login failed")
-                    end,function()
-                        panel.PhoneAreaNum:SetDisabled(false)
-                        panel.Username:SetDisabled(false)
-                        panel.Password:SetDisabled(false)
-                        --panel.Privacy.Select:SetDisabled(false)
-                        panel.ToggleMode:SetDisabled(false)
-                        self:SetDisabled(false)
-                    end)
+                    // TokenRequest("https://ncm.nekogan.com/login/cellphone?u="..LocalPlayer():SteamID64().."&phone="..panel.Username:GetValue():JavascriptSafe().."&password="..panel.Password:GetValue():JavascriptSafe().."&countrycode="..panel.PhoneAreaNum:GetValue().."&u="..LocalPlayer():SteamID64(),function(body)
+                    //     local result = util.JSONToTable(body)
+                    //     if result == nil then
+                    //         SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
+                    //         return
+                    //     end
+                    //     if result["code"] ~= 200 then
+                    //         PrintTable(result)
+                    //         SetDMUISkin(Derma_Message(GetText("loginfailed").."\n"..result["msg"], GetText("error"), GetText("ok")))
+                    //         return
+                    //     end
+                    //     SetSettings("CloudMusicUserToken",result["token"])
+                    //     SetDMUISkin(Derma_Message(GetText("loginsuccess",{"name",result["profile"]["nickname"]}), GetText("welcome"), GetText("ok")))
+                    //     InitUserInfo()
+                    //     HideOverlay()
+                    //     Print("User has logged in")
+                    //     panel:Remove()
+                    // end,function()
+                    //     SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
+                    //     Print("Login failed")
+                    // end,function()
+                    //     panel.PhoneAreaNum:SetDisabled(false)
+                    //     panel.Username:SetDisabled(false)
+                    //     panel.Password:SetDisabled(false)
+                    //     --panel.Privacy.Select:SetDisabled(false)
+                    //     panel.ToggleMode:SetDisabled(false)
+                    //     self:SetDisabled(false)
+                    // end)
                 end
             end
             panel.Cancel = vgui.Create("DButton",panel)
@@ -1927,6 +1940,7 @@ if CLIENT then
             end
             SetUISkin(panel)
             panel:ShowPanel()
+            // SetDMUISkin(Derma_Message("非官方延续版暂不可使用本功能。谢谢配合。", "提示", GetText("ok")))
         end
         CloudMusic.Logout = vgui.Create("DButton",CloudMusic)
         function CloudMusic.Logout:CM_LangUpdate()
@@ -1937,7 +1951,7 @@ if CLIENT then
         CloudMusic.Logout:CM_SetI18N("logout")
         CloudMusic.Logout.Paint = ButtonPaint
         function CloudMusic.Logout:DoClick()
-            TokenRequest("https://gcm.tenmahw.com/logout?u="..LocalPlayer():SteamID64(),function(body)
+            TokenRequest("https://ncm.nekogan.com/logout?u="..LocalPlayer():SteamID64(),function(body)
                 SetSettings("CloudMusicUserToken","")
                 InitUserInfo()
                 SetDMUISkin(Derma_Message(GetText("logoutsuccess"),GetText("success"),GetText("ok")))
@@ -2051,7 +2065,7 @@ if CLIENT then
             function panel.Signin:DoClick()
                 self:SetDisabled(true)
                 Print("Signing in with Netease Android client")
-                TokenRequest("https://gcm.tenmahw.com/daily_signin?u="..LocalPlayer():SteamID64().."t="..os.time(),function(body)
+                TokenRequest("https://ncm.nekogan.com/daily_signin?u="..LocalPlayer():SteamID64().."t="..os.time(),function(body)
                     local json = util.JSONToTable(body)
                     if json and json["code"] == 200 then
                         SetDMUISkin(Derma_Message(GetText("signinsuccess",{"point",json["point"]}), GetText("signin"), GetText("ok")))
@@ -2106,7 +2120,7 @@ if CLIENT then
         CloudMusic.Body:SetPos(0,30)
         CloudMusic.Body:SetSize(winw,winh-30)
         function CloudMusic.Body:Paint(w,h)
-            draw.DrawText("Made by Texas", "CloudMusicText", winw-5, 0, Color(202,202,202), TEXT_ALIGN_RIGHT)
+            draw.DrawText("Made by Texas | API Service by Teas Official", "CloudMusicText", winw-5, 0, Color(202,202,202), TEXT_ALIGN_RIGHT)
         end
         CloudMusic.SettingsButton = vgui.Create("DButton",CloudMusic.Body)
         function CloudMusic.SettingsButton:CM_LangUpdate()
@@ -2193,7 +2207,7 @@ if CLIENT then
             local prev,next = CloudMusic.PrevPage:IsVisible(),CloudMusic.NextPage:IsVisible()
             CloudMusic.PrevPage:SetVisible(false)
             CloudMusic.NextPage:SetVisible(false)
-            TokenRequest("https://gcm.tenmahw.com/cloudsearch", function(body)
+            TokenRequest("https://ncm.nekogan.com/cloudsearch", function(body)
                 local json = util.JSONToTable(body)
                 if not json or json["code"] ~= 200 or json["result"]["songs"] == nil then
                     SetDMUISkin(Derma_Message(GetText("search_failed"), json["msg"] or GetText("error"), GetText("ok")))
@@ -2593,7 +2607,7 @@ if CLIENT then
         function CloudMusic.NextPage:DoClick()
             self:SetDisabled(true)
             if offset+100 > songCount then return end
-            TokenRequest("https://gcm.tenmahw.com/cloudsearch",function(body)
+            TokenRequest("https://ncm.nekogan.com/cloudsearch",function(body)
                 local json = util.JSONToTable(body)
                 if not json or json["code"] ~= 200 or json["result"]["songs"] == nil then
                     SetDMUISkin(Derma_Message(GetText("switch_page_failed"), json["msg"] or GetText("error"), GetText("ok")))
@@ -2685,6 +2699,7 @@ if CLIENT then
             AddProgress("CloudMusicBuffering",self.CurrentPlaying.Name.." - "..self.CurrentPlaying.Artist,GetText("try_play"))
             GetSongURL(cId,function(url)
                 Print("Fetch song url successfully")
+                print(url)
                 sound.PlayURL(url, "noblock noplay", function(station,errid,errname)
                     buffering = false
                     RemoveProgress("CloudMusicBuffering")
@@ -3352,6 +3367,7 @@ if CLIENT then
                     if i == #lrc or lrc[i+1].time > CloudMusic.CurrentChannel:GetTime()*1000 then
                         if lrc[i].time < CloudMusic.CurrentChannel:GetTime()*1000 then
                             mainLrc = line.value
+                            // print(CloudMusic.CurrentChannel:GetTime()*1000)
                             if not transLrc and i ~= #lrc then
                                 subLrc = lrc[i+1].value
                             end
