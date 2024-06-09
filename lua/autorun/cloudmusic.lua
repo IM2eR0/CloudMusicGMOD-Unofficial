@@ -13,7 +13,7 @@ local function Print(msg,color)
     if color == nil then color = DEF_COLOR end
     MsgC(DEF_COLOR,"[",Color(106,204,255),"CloudMusic",DEF_COLOR,"] ",color,msg,"\n")
 end
-local CLOUDMUSIC_VER = "1st Gen Final 20211119" -- DO NOT modify unless you know WHAT ARE YOU DOING
+local CLOUDMUSIC_VER = "Unofficial API Extend 20240609" -- DO NOT modify unless you know WHAT ARE YOU DOING
 if CLIENT then
     local LANGUAGES = {
         ["zh-CN"] = {
@@ -2062,6 +2062,7 @@ if CLIENT then
             panel.Signin:SetPos(5,300-50)
             panel.Signin:SetSize(winw/2-10,20)
             panel.Signin:CM_SetI18N("signin")
+            panel.Signin:SetEnabled(false)
             function panel.Signin:DoClick()
                 self:SetDisabled(true)
                 Print("Signing in with Netease Android client")
@@ -2088,7 +2089,7 @@ if CLIENT then
                 panel:ClosePanel()
             end
             Print("Fetching user details")
-            TokenRequest("https://gcm.tenmahw.com/user/subcount?u="..LocalPlayer():SteamID64(),function(body)
+            TokenRequest("https://ncm.nekogan.com/user/subcount?u="..LocalPlayer():SteamID64(),function(body)
                 local json = util.JSONToTable(body)
                 if not json then
                     panel.Details:CM_SetI18N("fetch_failed")
@@ -2162,7 +2163,7 @@ if CLIENT then
             CloudMusic.PrevPage:SetVisible(false)
             CloudMusic.NextPage:SetVisible(false)
             Print("Fetching playlist")
-            TokenRequest("https://gcm.tenmahw.com/resolve/playlist?u="..LocalPlayer():SteamID64().."&id="..songlist, function(json)
+            TokenRequest("https://ncm.nekogan.com/playlist/track/all?u="..LocalPlayer():SteamID64().."&id="..songlist, function(json)
                 local obj = util.JSONToTable(json)
                 if not obj or obj["code"] ~= 200 then
                     SetDMUISkin(Derma_Message(GetText("fetch_playlist_failed"), GetText("error"), GetText("ok")))
@@ -2172,7 +2173,8 @@ if CLIENT then
                 end
                 CloudMusic.PrevPage:SetVisible(false)
                 CloudMusic.NextPage:SetVisible(false)
-                CloudMusic.Songlist:Resolve(obj["playlist"]["tracks"], true)
+                // CloudMusic.Songlist:Resolve(obj["playlist"]["tracks"], true)
+                CloudMusic.Songlist:Resolve(obj["songs"], true)
                 CloudMusic.Songlist:SetVisible(true)
                 CloudMusic.Playlists:SetVisible(false)
                 Print("Fetch playlist successfully")
@@ -2255,7 +2257,7 @@ if CLIENT then
             local prev,next = CloudMusic.PrevPage:IsVisible(),CloudMusic.NextPage:IsVisible()
             CloudMusic.PrevPage:SetVisible(false)
             CloudMusic.NextPage:SetVisible(false)
-            TokenRequest("https://gcm.tenmahw.com/recommend/songs?u="..LocalPlayer():SteamID64(),function(body)
+            TokenRequest("https://ncm.nekogan.com/recommend/songs?u="..LocalPlayer():SteamID64(),function(body)
                 local result = util.JSONToTable(body)
                 if not result or result["code"] ~= 200 then
                     SetDMUISkin(Derma_Message(GetText("fetch_daily_recommend_failed"), GetText("error"), GetText("ok")))
@@ -2287,7 +2289,7 @@ if CLIENT then
             local prev,next = CloudMusic.PrevPage:IsVisible(),CloudMusic.NextPage:IsVisible()
             CloudMusic.PrevPage:SetVisible(false)
             CloudMusic.NextPage:SetVisible(false)
-            TokenRequest("https://gcm.tenmahw.com/user/playlist?u="..LocalPlayer():SteamID64().."&uid="..userDetail["userId"],function(body)
+            TokenRequest("https://ncm.nekogan.com/user/playlist?uid="..userDetail["userId"].."&u="..LocalPlayer():SteamID64(),function(body)
                 local result = util.JSONToTable(body)
                 if not result or result["code"] ~= 200 then
                     SetDMUISkin(Derma_Message(GetText("fetch_user_playlists_failed"), GetText("error"), GetText("ok")))
@@ -2427,7 +2429,7 @@ if CLIENT then
         DisableListHeader(CloudMusic.Playlists)
         ListBackgroundColor(CloudMusic.Playlists)
         function CloudMusic.Playlists:DoDoubleClick(id, line)
-            TokenRequest("https://gcm.tenmahw.com/resolve/playlist?u="..LocalPlayer():SteamID64().."&id="..line:GetColumnText(4), function(json)
+            TokenRequest("https://ncm.nekogan.com/playlist/detail?id="..line:GetColumnText(4).."&u="..LocalPlayer():SteamID64(), function(json)
                 local obj = util.JSONToTable(json)
                 if obj["code"] ~= 200 then
                     SetDMUISkin(Derma_Message(GetText("playlistfailed"), GetText("error"), GetText("ok")))
@@ -2642,7 +2644,7 @@ if CLIENT then
         function CloudMusic.PrevPage:DoClick()
             self:SetDisabled(true)
             if offset == 0 then return end
-            TokenRequest("https://gcm.tenmahw.com/cloudsearch",function(body)
+            TokenRequest("https://ncm.nekogan.com/cloudsearch",function(body)
                 local json = util.JSONToTable(body)
                 if not json or json["code"] ~= 200 or json["result"]["songs"] == nil then
                     SetDMUISkin(Derma_Message(GetText("switch_page_failed"), json["msg"] or GetText("error"), GetText("ok")))
@@ -4076,7 +4078,7 @@ if CLIENT then
             end
             donate:CM_SetI18N("donate")
             donate.DoClick = function()
-                gui.OpenURL("https://tenmahw.com/donate")
+                gui.OpenURL("https://afdian.net/a/eh5here")
             end
             donate.Paint = ButtonPaint
             local bugreportws = vgui.Create("DButton",w)
@@ -4432,10 +4434,11 @@ if CLIENT then
     end
 end
 if SERVER then
-    print("===========================\n")
-    print("    Cloud Music for LUA    \n")
-    print("         By  Texas         \n")
-    print("===========================")
+    print("===============================\n")
+    print("      Cloud Music for LUA      \n")
+    print("           By  Texas           \n")
+    print("  API Service by Teas Official \n")
+    print("===============================")
     Print("Initializing serverside CloudMusic "..CLOUDMUSIC_VER)
     local function Init()
         util.AddNetworkString("ToggleCloudMusic")
