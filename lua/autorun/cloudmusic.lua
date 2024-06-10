@@ -47,7 +47,7 @@ if CLIENT then
             ["bottom_left"] = "左下角",
             ["bottom_right"] = "右下角",
             ["login_title"] = "登录网易云音乐账号",
-            ["use_phone"] = "手机号登录暂不可用",
+            ["use_phone"] = "使用二维码登录",
             ["use_email"] = "使用邮箱登录",
             ["phone"] = "手机号",
             ["email"] = "电子邮件",
@@ -56,6 +56,7 @@ if CLIENT then
             ["privacy_policy"] = "《Cloud Music for Garry's Mod隐私政策》",
             ["privacy_policy_warn"] = "使用此功能你需要阅读并同意《CloudMusic for Garry's Mod隐私政策》",
             ["loginfailed"] = "登陆失败",
+            ["getqrfailed"] = "获取二维码时失败",
             ["loginsuccess"] = "登录成功！欢迎回来，%name%",
             ["logoutsuccess"] = "注销成功",
             ["logoutfailed"] = "注销失败",
@@ -216,7 +217,7 @@ if CLIENT then
             ["bottom_left"] = "左下角",
             ["bottom_right"] = "右下角",
             ["login_title"] = "登錄網易雲音樂帳號",
-            ["use_phone"] = "手機號碼登錄暫不可用",
+            ["use_phone"] = "使用二維碼登錄",
             ["use_email"] = "使用Email登陸",
             ["phone"] = "手機號碼",
             ["email"] = "Email",
@@ -225,6 +226,7 @@ if CLIENT then
             ["privacy_policy"] = "《Cloud Music for Garry's Mod隱私政策》",
             ["privacy_policy_warn"] = "使用此功能您必須閱讀並同意《CloudMusic for Garry's Mod隱私政策》",
             ["loginfailed"] = "登錄失敗",
+            ["getqrfailed"] = "獲取二維碼時失敗",
             ["loginsuccess"] = "登錄成功！歡迎回來，%name%",
             ["logoutsuccess"] = "註銷成功",
             ["logoutfailed"] = "註銷失敗",
@@ -385,7 +387,7 @@ if CLIENT then
             ["bottom_left"] = "Bottom Left",
             ["bottom_right"] = "Bottom Right",
             ["login_title"] = "Login Netease Cloud Music",
-            ["use_phone"] = "Phone Number Not Available",
+            ["use_phone"] = "Use QRCode",
             ["use_email"] = "Use Email",
             ["phone"] = "Phone Number",
             ["email"] = "Email",
@@ -394,6 +396,7 @@ if CLIENT then
             ["privacy_policy"] = "Privacy Policy",
             ["privacy_policy_warn"] = "To use this function you have to read and agree Privacy Policy",
             ["loginfailed"] = "Login failed",
+            ["getqrfailed"] = "Failed to get QRCode",
             ["loginsuccess"] = "Login success! Welcome back, %name%",
             ["logoutsuccess"] = "Log out success",
             ["logoutfailed"] = "Log out failed",
@@ -540,10 +543,11 @@ if CLIENT then
         --Windows 10 UI Skin by Spar
         local surface=surface;local Color=Color;SKIN={}SKIN.PrintName="Windows 10"SKIN.Author="Spar"SKIN.DermaVersion=1;SKIN.GwenTexture=Material("gwenskin/windows10.png")SKIN.text_dark=Color(0,0,0,255)SKIN.colTextEntryText=Color(0,0,0,255)SKIN.colTextEntryTextHighlight=Color(0,120,215,255)SKIN.colTextEntryTextCursor=Color(0,0,0,255)SKIN.colTextEntryTextPlaceholder=Color(109,109,109,255)SKIN.tex={}SKIN.tex.Selection=GWEN.CreateTextureBorder(384,32,31,31,4,4,4,4)SKIN.tex.Panels={}SKIN.tex.Panels.Normal=GWEN.CreateTextureBorder(256,0,63,63,16,16,16,16)SKIN.tex.Panels.Bright=GWEN.CreateTextureBorder(256+64,0,63,63,16,16,16,16)SKIN.tex.Panels.Dark=GWEN.CreateTextureBorder(256,64,63,63,16,16,16,16)SKIN.tex.Panels.Highlight=GWEN.CreateTextureBorder(256+64,64,63,63,16,16,16,16)SKIN.tex.Button=GWEN.CreateTextureBorder(480,0,31,31,8,8,8,8)SKIN.tex.Button_Hovered=GWEN.CreateTextureBorder(480,32,31,31,8,8,8,8)SKIN.tex.Button_Dead=GWEN.CreateTextureBorder(480,64,31,31,8,8,8,8)SKIN.tex.Button_Down=GWEN.CreateTextureBorder(480,96,31,31,8,8,8,8)SKIN.tex.Shadow=GWEN.CreateTextureBorder(448,0,31,31,8,8,8,8)SKIN.tex.Tree=GWEN.CreateTextureBorder(256,128,127,127,16,16,16,16)SKIN.tex.Checkbox_Checked=GWEN.CreateTextureNormal(448,32,15,15)SKIN.tex.Checkbox=GWEN.CreateTextureNormal(464,32,15,15)SKIN.tex.CheckboxD_Checked=GWEN.CreateTextureNormal(448,48,15,15)SKIN.tex.CheckboxD=GWEN.CreateTextureNormal(464,48,15,15)SKIN.tex.RadioButton_Checked=GWEN.CreateTextureNormal(448,64,15,15)SKIN.tex.RadioButton=GWEN.CreateTextureNormal(464,64,15,15)SKIN.tex.RadioButtonD_Checked=GWEN.CreateTextureNormal(448,80,15,15)SKIN.tex.RadioButtonD=GWEN.CreateTextureNormal(464,80,15,15)SKIN.tex.TreePlus=GWEN.CreateTextureNormal(448,96,15,15)SKIN.tex.TreeMinus=GWEN.CreateTextureNormal(464,96,15,15)SKIN.tex.TextBox=GWEN.CreateTextureBorder(0,150,127,21,4,4,4,4)SKIN.tex.TextBox_Focus=GWEN.CreateTextureBorder(0,172,127,21,4,4,4,4)SKIN.tex.TextBox_Disabled=GWEN.CreateTextureBorder(0,194,127,21,4,4,4,4)SKIN.tex.MenuBG_Column=GWEN.CreateTextureBorder(128,128,127,63,24,8,8,8)SKIN.tex.MenuBG=GWEN.CreateTextureBorder(128,192,127,63,8,8,8,8)SKIN.tex.MenuBG_Hover=GWEN.CreateTextureBorder(128,256,127,31,8,8,8,8)SKIN.tex.MenuBG_Spacer=GWEN.CreateTextureNormal(128,288,127,3)SKIN.tex.Menu_Strip=GWEN.CreateTextureBorder(0,128,127,21,8,8,8,8)SKIN.tex.Menu_Check=GWEN.CreateTextureNormal(448,112,15,15)SKIN.tex.Tab_Control=GWEN.CreateTextureBorder(0,256,127,127,8,8,8,8)SKIN.tex.TabB_Active=GWEN.CreateTextureBorder(0,416,63,31,8,8,8,8)SKIN.tex.TabB_Inactive=GWEN.CreateTextureBorder(128,416,63,31,8,8,8,8)SKIN.tex.TabT_Active=GWEN.CreateTextureBorder(0,384,63,31,8,8,8,8)SKIN.tex.TabT_Inactive=GWEN.CreateTextureBorder(128,384,63,31,8,8,8,8)SKIN.tex.TabL_Active=GWEN.CreateTextureBorder(64,384,31,63,8,8,8,8)SKIN.tex.TabL_Inactive=GWEN.CreateTextureBorder(64+128,384,31,63,8,8,8,8)SKIN.tex.TabR_Active=GWEN.CreateTextureBorder(96,384,31,63,8,8,8,8)SKIN.tex.TabR_Inactive=GWEN.CreateTextureBorder(96+128,384,31,63,8,8,8,8)SKIN.tex.Tab_Bar=GWEN.CreateTextureBorder(128,352,127,31,4,4,4,4)SKIN.tex.Window={}SKIN.tex.Window.Normal=GWEN.CreateTextureBorder(0,0,127,127,8,24,8,8)SKIN.tex.Window.Inactive=GWEN.CreateTextureBorder(128,0,127,127,8,24,8,8)SKIN.tex.Window.Close=GWEN.CreateTextureNormal(32,448,31,24)SKIN.tex.Window.Close_Hover=GWEN.CreateTextureNormal(64,448,31,24)SKIN.tex.Window.Close_Down=GWEN.CreateTextureNormal(96,448,31,24)SKIN.tex.Window.Maxi=GWEN.CreateTextureNormal(32+96*2,448,31,24)SKIN.tex.Window.Maxi_Hover=GWEN.CreateTextureNormal(64+96*2,448,31,24)SKIN.tex.Window.Maxi_Down=GWEN.CreateTextureNormal(96+96*2,448,31,24)SKIN.tex.Window.Restore=GWEN.CreateTextureNormal(32+96*2,448+32,31,24)SKIN.tex.Window.Restore_Hover=GWEN.CreateTextureNormal(64+96*2,448+32,31,24)SKIN.tex.Window.Restore_Down=GWEN.CreateTextureNormal(96+96*2,448+32,31,24)SKIN.tex.Window.Mini=GWEN.CreateTextureNormal(32+96,448,31,24)SKIN.tex.Window.Mini_Hover=GWEN.CreateTextureNormal(64+96,448,31,24)SKIN.tex.Window.Mini_Down=GWEN.CreateTextureNormal(96+96,448,31,24)SKIN.tex.Scroller={}SKIN.tex.Scroller.TrackV=GWEN.CreateTextureBorder(384,208,15,127,4,4,4,4)SKIN.tex.Scroller.ButtonV_Normal=GWEN.CreateTextureBorder(384+16,208,15,127,4,4,4,4)SKIN.tex.Scroller.ButtonV_Hover=GWEN.CreateTextureBorder(384+32,208,15,127,4,4,4,4)SKIN.tex.Scroller.ButtonV_Down=GWEN.CreateTextureBorder(384+48,208,15,127,4,4,4,4)SKIN.tex.Scroller.ButtonV_Disabled=GWEN.CreateTextureBorder(384+64,208,15,127,4,4,4,4)SKIN.tex.Scroller.TrackH=GWEN.CreateTextureBorder(384,128,127,15,4,4,4,4)SKIN.tex.Scroller.ButtonH_Normal=GWEN.CreateTextureBorder(384,128+16,127,15,4,4,4,4)SKIN.tex.Scroller.ButtonH_Hover=GWEN.CreateTextureBorder(384,128+32,127,15,4,4,4,4)SKIN.tex.Scroller.ButtonH_Down=GWEN.CreateTextureBorder(384,128+48,127,15,4,4,4,4)SKIN.tex.Scroller.ButtonH_Disabled=GWEN.CreateTextureBorder(384,128+64,127,15,4,4,4,4)SKIN.tex.Scroller.LeftButton_Normal=GWEN.CreateTextureBorder(464,208,15,15,2,2,2,2)SKIN.tex.Scroller.LeftButton_Hover=GWEN.CreateTextureBorder(480,208,15,15,2,2,2,2)SKIN.tex.Scroller.LeftButton_Down=GWEN.CreateTextureBorder(464,272,15,15,2,2,2,2)SKIN.tex.Scroller.LeftButton_Disabled=GWEN.CreateTextureBorder(480+48,272,15,15,2,2,2,2)SKIN.tex.Scroller.UpButton_Normal=GWEN.CreateTextureBorder(464,208+16,15,15,2,2,2,2)SKIN.tex.Scroller.UpButton_Hover=GWEN.CreateTextureBorder(480,208+16,15,15,2,2,2,2)SKIN.tex.Scroller.UpButton_Down=GWEN.CreateTextureBorder(464,272+16,15,15,2,2,2,2)SKIN.tex.Scroller.UpButton_Disabled=GWEN.CreateTextureBorder(480+48,272+16,15,15,2,2,2,2)SKIN.tex.Scroller.RightButton_Normal=GWEN.CreateTextureBorder(464,208+32,15,15,2,2,2,2)SKIN.tex.Scroller.RightButton_Hover=GWEN.CreateTextureBorder(480,208+32,15,15,2,2,2,2)SKIN.tex.Scroller.RightButton_Down=GWEN.CreateTextureBorder(464,272+32,15,15,2,2,2,2)SKIN.tex.Scroller.RightButton_Disabled=GWEN.CreateTextureBorder(480+48,272+32,15,15,2,2,2,2)SKIN.tex.Scroller.DownButton_Normal=GWEN.CreateTextureBorder(464,208+48,15,15,2,2,2,2)SKIN.tex.Scroller.DownButton_Hover=GWEN.CreateTextureBorder(480,208+48,15,15,2,2,2,2)SKIN.tex.Scroller.DownButton_Down=GWEN.CreateTextureBorder(464,272+48,15,15,2,2,2,2)SKIN.tex.Scroller.DownButton_Disabled=GWEN.CreateTextureBorder(480+48,272+48,15,15,2,2,2,2)SKIN.tex.Menu={}SKIN.tex.Menu.RightArrow=GWEN.CreateTextureNormal(464,112,15,15)SKIN.tex.Input={}SKIN.tex.Input.ComboBox={}SKIN.tex.Input.ComboBox.Normal=GWEN.CreateTextureBorder(384,336,127,31,8,8,32,8)SKIN.tex.Input.ComboBox.Hover=GWEN.CreateTextureBorder(384,336+32,127,31,8,8,32,8)SKIN.tex.Input.ComboBox.Down=GWEN.CreateTextureBorder(384,336+64,127,31,8,8,32,8)SKIN.tex.Input.ComboBox.Disabled=GWEN.CreateTextureBorder(384,336+96,127,31,8,8,32,8)SKIN.tex.Input.ComboBox.Button={}SKIN.tex.Input.ComboBox.Button.Normal=GWEN.CreateTextureNormal(496,272,15,15)SKIN.tex.Input.ComboBox.Button.Hover=GWEN.CreateTextureNormal(496,272+16,15,15)SKIN.tex.Input.ComboBox.Button.Down=GWEN.CreateTextureNormal(496,272+32,15,15)SKIN.tex.Input.ComboBox.Button.Disabled=GWEN.CreateTextureNormal(496,272+48,15,15)SKIN.tex.Input.UpDown={}SKIN.tex.Input.UpDown.Up={}SKIN.tex.Input.UpDown.Up.Normal=GWEN.CreateTextureCentered(384,112,7,7)SKIN.tex.Input.UpDown.Up.Hover=GWEN.CreateTextureCentered(384+8,112,7,7)SKIN.tex.Input.UpDown.Up.Down=GWEN.CreateTextureCentered(384+16,112,7,7)SKIN.tex.Input.UpDown.Up.Disabled=GWEN.CreateTextureCentered(384+24,112,7,7)SKIN.tex.Input.UpDown.Down={}SKIN.tex.Input.UpDown.Down.Normal=GWEN.CreateTextureCentered(384,120,7,7)SKIN.tex.Input.UpDown.Down.Hover=GWEN.CreateTextureCentered(384+8,120,7,7)SKIN.tex.Input.UpDown.Down.Down=GWEN.CreateTextureCentered(384+16,120,7,7)SKIN.tex.Input.UpDown.Down.Disabled=GWEN.CreateTextureCentered(384+24,120,7,7)SKIN.tex.Input.Slider={}SKIN.tex.Input.Slider.H={}SKIN.tex.Input.Slider.H.Normal=GWEN.CreateTextureNormal(416,32,15,15)SKIN.tex.Input.Slider.H.Hover=GWEN.CreateTextureNormal(416,32+16,15,15)SKIN.tex.Input.Slider.H.Down=GWEN.CreateTextureNormal(416,32+32,15,15)SKIN.tex.Input.Slider.H.Disabled=GWEN.CreateTextureNormal(416,32+48,15,15)SKIN.tex.Input.Slider.V={}SKIN.tex.Input.Slider.V.Normal=GWEN.CreateTextureNormal(416+16,32,15,15)SKIN.tex.Input.Slider.V.Hover=GWEN.CreateTextureNormal(416+16,32+16,15,15)SKIN.tex.Input.Slider.V.Down=GWEN.CreateTextureNormal(416+16,32+32,15,15)SKIN.tex.Input.Slider.V.Disabled=GWEN.CreateTextureNormal(416+16,32+48,15,15)SKIN.tex.Input.ListBox={}SKIN.tex.Input.ListBox.Background=GWEN.CreateTextureBorder(256,256,63,127,8,8,8,8)SKIN.tex.Input.ListBox.Hovered=GWEN.CreateTextureBorder(320,320,31,31,8,8,8,8)SKIN.tex.Input.ListBox.EvenLine=GWEN.CreateTextureBorder(352,256,31,31,8,8,8,8)SKIN.tex.Input.ListBox.OddLine=GWEN.CreateTextureBorder(352,288,31,31,8,8,8,8)SKIN.tex.Input.ListBox.EvenLineSelected=GWEN.CreateTextureBorder(320,256,31,31,8,8,8,8)SKIN.tex.Input.ListBox.OddLineSelected=GWEN.CreateTextureBorder(320,288,31,31,8,8,8,8)SKIN.tex.ProgressBar={}SKIN.tex.ProgressBar.Back=GWEN.CreateTextureBorder(384,0,31,31,8,8,8,8)SKIN.tex.ProgressBar.Front=GWEN.CreateTextureBorder(384+32,0,31,31,8,8,8,8)SKIN.tex.CategoryList={}SKIN.tex.CategoryList.Outer=GWEN.CreateTextureBorder(256,384,63,63,8,8,8,8)SKIN.tex.CategoryList.Inner=GWEN.CreateTextureBorder(320,384,63,63,8,21,8,8)SKIN.tex.CategoryList.Header=GWEN.CreateTextureBorder(320,352,63,31,8,8,8,8)SKIN.tex.Tooltip=GWEN.CreateTextureBorder(384,64,31,31,8,8,8,8)SKIN.Colours={}SKIN.Colours.Window={}SKIN.Colours.Window.TitleActive=GWEN.TextureColor(4+8*0,508)SKIN.Colours.Window.TitleInactive=GWEN.TextureColor(4+8*1,508)SKIN.Colours.Button={}SKIN.Colours.Button.Normal=GWEN.TextureColor(4+8*2,508)SKIN.Colours.Button.Hover=GWEN.TextureColor(4+8*3,508)SKIN.Colours.Button.Down=GWEN.TextureColor(4+8*2,500)SKIN.Colours.Button.Disabled=GWEN.TextureColor(4+8*3,500)SKIN.Colours.Tab={}SKIN.Colours.Tab.Active={}SKIN.Colours.Tab.Active.Normal=GWEN.TextureColor(4+8*4,508)SKIN.Colours.Tab.Active.Hover=GWEN.TextureColor(4+8*5,508)SKIN.Colours.Tab.Active.Down=GWEN.TextureColor(4+8*4,500)SKIN.Colours.Tab.Active.Disabled=GWEN.TextureColor(4+8*5,500)SKIN.Colours.Tab.Inactive={}SKIN.Colours.Tab.Inactive.Normal=GWEN.TextureColor(4+8*6,508)SKIN.Colours.Tab.Inactive.Hover=GWEN.TextureColor(4+8*7,508)SKIN.Colours.Tab.Inactive.Down=GWEN.TextureColor(4+8*6,500)SKIN.Colours.Tab.Inactive.Disabled=GWEN.TextureColor(4+8*7,500)SKIN.Colours.Label={}SKIN.Colours.Label.Default=GWEN.TextureColor(4+8*8,508)SKIN.Colours.Label.Bright=GWEN.TextureColor(4+8*9,508)SKIN.Colours.Label.Dark=GWEN.TextureColor(4+8*8,500)SKIN.Colours.Label.Highlight=GWEN.TextureColor(4+8*9,500)SKIN.Colours.Tree={}SKIN.Colours.Tree.Lines=GWEN.TextureColor(4+8*10,508)SKIN.Colours.Tree.Normal=GWEN.TextureColor(4+8*11,508)SKIN.Colours.Tree.Hover=GWEN.TextureColor(4+8*10,500)SKIN.Colours.Tree.Selected=GWEN.TextureColor(4+8*11,500)SKIN.Colours.Properties={}SKIN.Colours.Properties.Line_Normal=GWEN.TextureColor(4+8*12,508)SKIN.Colours.Properties.Line_Selected=GWEN.TextureColor(4+8*13,508)SKIN.Colours.Properties.Line_Hover=GWEN.TextureColor(4+8*12,500)SKIN.Colours.Properties.Title=GWEN.TextureColor(4+8*13,500)SKIN.Colours.Properties.Column_Normal=GWEN.TextureColor(4+8*14,508)SKIN.Colours.Properties.Column_Selected=GWEN.TextureColor(4+8*15,508)SKIN.Colours.Properties.Column_Hover=GWEN.TextureColor(4+8*14,500)SKIN.Colours.Properties.Border=GWEN.TextureColor(4+8*15,500)SKIN.Colours.Properties.Label_Normal=GWEN.TextureColor(4+8*16,508)SKIN.Colours.Properties.Label_Selected=GWEN.TextureColor(4+8*17,508)SKIN.Colours.Properties.Label_Hover=GWEN.TextureColor(4+8*16,500)SKIN.Colours.Category={}SKIN.Colours.Category.Header=GWEN.TextureColor(4+8*18,500)SKIN.Colours.Category.Header_Closed=GWEN.TextureColor(4+8*19,500)SKIN.Colours.Category.Line={}SKIN.Colours.Category.Line.Text=GWEN.TextureColor(4+8*20,508)SKIN.Colours.Category.Line.Text_Hover=GWEN.TextureColor(4+8*21,508)SKIN.Colours.Category.Line.Text_Selected=GWEN.TextureColor(4+8*20,500)SKIN.Colours.Category.Line.Button=GWEN.TextureColor(4+8*21,500)SKIN.Colours.Category.Line.Button_Hover=GWEN.TextureColor(4+8*22,508)SKIN.Colours.Category.Line.Button_Selected=GWEN.TextureColor(4+8*23,508)SKIN.Colours.Category.LineAlt={}SKIN.Colours.Category.LineAlt.Text=GWEN.TextureColor(4+8*22,500)SKIN.Colours.Category.LineAlt.Text_Hover=GWEN.TextureColor(4+8*23,500)SKIN.Colours.Category.LineAlt.Text_Selected=GWEN.TextureColor(4+8*24,508)SKIN.Colours.Category.LineAlt.Button=GWEN.TextureColor(4+8*25,508)SKIN.Colours.Category.LineAlt.Button_Hover=GWEN.TextureColor(4+8*24,500)SKIN.Colours.Category.LineAlt.Button_Selected=GWEN.TextureColor(4+8*25,500)SKIN.Colours.TooltipText=GWEN.TextureColor(4+8*26,500)function SKIN:PaintPanel(a,b,c)if not a.m_bBackground then return end;self.tex.Panels.Normal(0,0,b,c,a.m_bgColor)end;function SKIN:PaintShadow(a,b,c)SKIN.tex.Shadow(0,0,b,c)end;function SKIN:PaintFrame(a,b,c)if a.m_bPaintShadow then DisableClipping(true)self.tex.Shadow(-4,-4,b+10,c+10)DisableClipping(false)end;if a:HasHierarchicalFocus()then self.tex.Window.Normal(0,0,b,c)else self.tex.Window.Inactive(0,0,b,c)end end;function SKIN:PaintButton(a,b,c)if not a.m_bBackground then return end;if a.Depressed or a:IsSelected()or a:GetToggle()then return self.tex.Button_Down(0,0,b,c)end;if a:GetDisabled()then return self.tex.Button_Dead(0,0,b,c)end;if a.Hovered then return self.tex.Button_Hovered(0,0,b,c)end;self.tex.Button(0,0,b,c)end;function SKIN:PaintTree(a,b,c)if not a.m_bBackground then return end;self.tex.Tree(0,0,b,c,a.m_bgColor)end;function SKIN:PaintCheckBox(a,b,c)if a:GetChecked()then if a:GetDisabled()then self.tex.CheckboxD_Checked(0,0,b,c)else self.tex.Checkbox_Checked(0,0,b,c)end else if a:GetDisabled()then self.tex.CheckboxD(0,0,b,c)else self.tex.Checkbox(0,0,b,c)end end end;function SKIN:PaintExpandButton(a,b,c)if not a:GetExpanded()then self.tex.TreePlus(0,0,b,c)else self.tex.TreeMinus(0,0,b,c)end end;function SKIN:PaintTextEntry(a,b,c)if a.m_bBackground then if a:GetDisabled()then self.tex.TextBox_Disabled(0,0,b,c)elseif a:HasFocus()then self.tex.TextBox_Focus(0,0,b,c)else self.tex.TextBox(0,0,b,c)end end;if a.GetPlaceholderText and a.GetPlaceholderColor and a:GetPlaceholderText()and a:GetPlaceholderText():Trim()~=""and a:GetPlaceholderColor()and(not a:GetText()or a:GetText()=="")then local d=a:GetText()local e=a:GetPlaceholderText()if e:StartWith("#")then e=e:sub(2)end;e=language.GetPhrase(e)a:SetText(e)a:DrawTextEntryText(a:GetPlaceholderColor(),a:GetHighlightColor(),a:GetCursorColor())a:SetText(d)return end;a:DrawTextEntryText(a:GetTextColor(),a:GetHighlightColor(),a:GetCursorColor())end;function SKIN:PaintMenu(a,b,c)if a:GetDrawColumn()then self.tex.MenuBG_Column(0,0,b,c)else self.tex.MenuBG(0,0,b,c)end end;function SKIN:PaintMenuSpacer(a,b,c)surface.SetDrawColor(Color(0,0,0,100))surface.DrawRect(0,0,b,c)end;function SKIN:PaintMenuOption(a,b,c)if a.m_bBackground and(a.Hovered or a.Highlight)then self.tex.MenuBG_Hover(0,0,b,c)end;if a:GetChecked()then self.tex.Menu_Check(5,c/2-7,15,15)end end;function SKIN:PaintMenuRightArrow(a,b,c)self.tex.Menu.RightArrow(0,0,b,c)end;function SKIN:PaintPropertySheet(a,b,c)local f=a:GetActiveTab()local g=0;if f then g=f:GetTall()-8 end;self.tex.Tab_Control(0,g,b,c-g)end;function SKIN:PaintTab(a,b,c)if a:IsActive()then return self:PaintActiveTab(a,b,c)end;self.tex.TabT_Inactive(0,0,b,c)end;function SKIN:PaintActiveTab(a,b,c)self.tex.TabT_Active(0,0,b,c)end;function SKIN:PaintWindowCloseButton(a,b,c)if not a.m_bBackground then return end;if a:GetDisabled()then return self.tex.Window.Close(0,0,b,c,Color(255,255,255,50))end;if a.Depressed or a:IsSelected()then return self.tex.Window.Close_Down(0,0,b,c)end;if a.Hovered then return self.tex.Window.Close_Hover(0,0,b,c)end;self.tex.Window.Close(0,0,b,c)end;function SKIN:PaintWindowMinimizeButton(a,b,c)if not a.m_bBackground then return end;if a:GetDisabled()then return self.tex.Window.Mini(0,0,b,c,Color(255,255,255,50))end;if a.Depressed or a:IsSelected()then return self.tex.Window.Mini_Down(0,0,b,c)end;if a.Hovered then return self.tex.Window.Mini_Hover(0,0,b,c)end;self.tex.Window.Mini(0,0,b,c)end;function SKIN:PaintWindowMaximizeButton(a,b,c)if not a.m_bBackground then return end;if a:GetDisabled()then return self.tex.Window.Maxi(0,0,b,c,Color(255,255,255,50))end;if a.Depressed or a:IsSelected()then return self.tex.Window.Maxi_Down(0,0,b,c)end;if a.Hovered then return self.tex.Window.Maxi_Hover(0,0,b,c)end;self.tex.Window.Maxi(0,0,b,c)end;function SKIN:PaintVScrollBar(a,b,c)self.tex.Scroller.TrackV(0,0,b,c)end;function SKIN:PaintScrollBarGrip(a,b,c)if a:GetDisabled()then return self.tex.Scroller.ButtonV_Disabled(0,0,b,c)end;if a.Depressed then return self.tex.Scroller.ButtonV_Down(0,0,b,c)end;if a.Hovered then return self.tex.Scroller.ButtonV_Hover(0,0,b,c)end;return self.tex.Scroller.ButtonV_Normal(0,0,b,c)end;function SKIN:PaintButtonDown(a,b,c)if not a.m_bBackground then return end;if a.Depressed or a:IsSelected()then return self.tex.Scroller.DownButton_Down(0,0,b,c)end;if a:GetDisabled()then return self.tex.Scroller.DownButton_Dead(0,0,b,c)end;if a.Hovered then return self.tex.Scroller.DownButton_Hover(0,0,b,c)end;self.tex.Scroller.DownButton_Normal(0,0,b,c)end;function SKIN:PaintButtonUp(a,b,c)if not a.m_bBackground then return end;if a.Depressed or a:IsSelected()then return self.tex.Scroller.UpButton_Down(0,0,b,c)end;if a:GetDisabled()then return self.tex.Scroller.UpButton_Dead(0,0,b,c)end;if a.Hovered then return self.tex.Scroller.UpButton_Hover(0,0,b,c)end;self.tex.Scroller.UpButton_Normal(0,0,b,c)end;function SKIN:PaintButtonLeft(a,b,c)if not a.m_bBackground then return end;if a.Depressed or a:IsSelected()then return self.tex.Scroller.LeftButton_Down(0,0,b,c)end;if a:GetDisabled()then return self.tex.Scroller.LeftButton_Dead(0,0,b,c)end;if a.Hovered then return self.tex.Scroller.LeftButton_Hover(0,0,b,c)end;self.tex.Scroller.LeftButton_Normal(0,0,b,c)end;function SKIN:PaintButtonRight(a,b,c)if not a.m_bBackground then return end;if a.Depressed or a:IsSelected()then return self.tex.Scroller.RightButton_Down(0,0,b,c)end;if a:GetDisabled()then return self.tex.Scroller.RightButton_Dead(0,0,b,c)end;if a.Hovered then return self.tex.Scroller.RightButton_Hover(0,0,b,c)end;self.tex.Scroller.RightButton_Normal(0,0,b,c)end;function SKIN:PaintComboDownArrow(a,b,c)if a.ComboBox:GetDisabled()then return self.tex.Input.ComboBox.Button.Disabled(0,0,b,c)end;if a.ComboBox.Depressed or a.ComboBox:IsMenuOpen()then return self.tex.Input.ComboBox.Button.Down(0,0,b,c)end;if a.ComboBox.Hovered then return self.tex.Input.ComboBox.Button.Hover(0,0,b,c)end;self.tex.Input.ComboBox.Button.Normal(0,0,b,c)end;function SKIN:PaintComboBox(a,b,c)if a:GetDisabled()then return self.tex.Input.ComboBox.Disabled(0,0,b,c)end;if a.Depressed or a:IsMenuOpen()then return self.tex.Input.ComboBox.Down(0,0,b,c)end;if a.Hovered then return self.tex.Input.ComboBox.Hover(0,0,b,c)end;self.tex.Input.ComboBox.Normal(0,0,b,c)end;function SKIN:PaintListBox(a,b,c)self.tex.Input.ListBox.Background(0,0,b,c)end;function SKIN:PaintNumberUp(a,b,c)if a:GetDisabled()then return self.tex.Input.UpDown.Up.Disabled(0,0,b,c)end;if a.Depressed then return self.tex.Input.UpDown.Up.Down(0,0,b,c)end;if a.Hovered then return self.tex.Input.UpDown.Up.Hover(0,0,b,c)end;self.tex.Input.UpDown.Up.Normal(0,0,b,c)end;function SKIN:PaintNumberDown(a,b,c)if a:GetDisabled()then return self.tex.Input.UpDown.Down.Disabled(0,0,b,c)end;if a.Depressed then return self.tex.Input.UpDown.Down.Down(0,0,b,c)end;if a.Hovered then return self.tex.Input.UpDown.Down.Hover(0,0,b,c)end;self.tex.Input.UpDown.Down.Normal(0,0,b,c)end;function SKIN:PaintTreeNode(a,b,c)if not a.m_bDrawLines then return end;surface.SetDrawColor(self.Colours.Tree.Lines)if a.m_bLastChild then surface.DrawRect(9,0,1,7)surface.DrawRect(9,7,9,1)else surface.DrawRect(9,0,1,c)surface.DrawRect(9,7,9,1)end end;function SKIN:PaintTreeNodeButton(a,b,c)if not a.m_bSelected then return end;local b,h=a:GetTextSize()self.tex.Selection(38,0,b+6,c)end;function SKIN:PaintSelection(a,b,c)self.tex.Selection(0,0,b,c)end;function SKIN:PaintSliderKnob(a,b,c)if a:GetDisabled()then return self.tex.Input.Slider.H.Disabled(0,0,b,c)end;if a.Depressed then return self.tex.Input.Slider.H.Down(0,0,b,c)end;if a.Hovered then return self.tex.Input.Slider.H.Hover(0,0,b,c)end;self.tex.Input.Slider.H.Normal(0,0,b,c)end;local function i(j,k,b,c,l)if not l then return end;local m=b/l;for n=0,l do surface.DrawRect(j+n*m,k+4,1,5)end end;function SKIN:PaintNumSlider(a,b,c)surface.SetDrawColor(Color(0,0,0,100))surface.DrawRect(8,c/2-1,b-15,1)i(8,c/2-1,b-16,1,a.m_iNotches)end;function SKIN:PaintProgress(a,b,c)self.tex.ProgressBar.Back(0,0,b,c)self.tex.ProgressBar.Front(0,0,b*a:GetFraction(),c)end;function SKIN:PaintCollapsibleCategory(a,b,c)if c<21 then return self.tex.CategoryList.Header(0,0,b,c)end;self.tex.CategoryList.Inner(0,0,b,63)end;function SKIN:PaintCategoryList(a,b,c)self.tex.CategoryList.Outer(0,0,b,c)end;function SKIN:PaintCategoryButton(a,b,c)if a.AltLine then if a.Depressed or a.m_bSelected then surface.SetDrawColor(self.Colours.Category.LineAlt.Button_Selected)elseif a.Hovered then surface.SetDrawColor(self.Colours.Category.LineAlt.Button_Hover)else surface.SetDrawColor(self.Colours.Category.LineAlt.Button)end else if a.Depressed or a.m_bSelected then surface.SetDrawColor(self.Colours.Category.Line.Button_Selected)elseif a.Hovered then surface.SetDrawColor(self.Colours.Category.Line.Button_Hover)else surface.SetDrawColor(self.Colours.Category.Line.Button)end end;surface.DrawRect(0,0,b,c)end;function SKIN:PaintListViewLine(a,b,c)if a:IsSelected()then self.tex.Input.ListBox.EvenLineSelected(0,0,b,c)elseif a.Hovered then self.tex.Input.ListBox.Hovered(0,0,b,c)elseif a.m_bAlt then self.tex.Input.ListBox.EvenLine(0,0,b,c)end end;function SKIN:PaintListView(a,b,c)if not a.m_bBackground then return end;self.tex.Input.ListBox.Background(0,0,b,c)end;function SKIN:PaintTooltip(a,b,c)self.tex.Tooltip(0,0,b,c)end;function SKIN:PaintMenuBar(a,b,c)self.tex.Menu_Strip(0,0,b,c)end;derma.DefineSkin("CloudMusicDermaSkin","Windows 10 UI used by CloudMusic",SKIN)
     end
-    print("===========================\n")
-    print("    Cloud Music for LUA    \n")
-    print("         By  Texas         \n")
-    print("===========================")
+    print("===============================\n")
+    print("      Cloud Music for LUA      \n")
+    print("           By  Texas           \n")
+    print("  API Service by Teas Official \n")
+    print("===============================")
     Print("Initializing CloudMusic "..CLOUDMUSIC_VER)
     cvars.RemoveChangeCallback("gmod_language", "CloudMusicLanguageDetect")
     local function Init()
@@ -948,11 +952,6 @@ if CLIENT then
                     Print("Failed to fetch the lyric of "..currentPlaying.Name)
                     return
                 end
-                --[[if json["code"] ~= 200 then
-                    AddMessage(GetText("lyricfailed_detail",{"name",currentPlaying.Name},{"msg",json["msg"]}),nil,3000,"error");
-                    Print("Failed to fetch the lyric of "..currentPlaying.Name.." because "..json["msg"])
-                    return
-                end]]
                 if json["lyric"] == nil or json["lyric"] == "" or not json["lyric"]["lrc"] then
                     AddMessage(GetText("nolyric",{"name",currentPlaying.Name}))
                     Print("Song "..currentPlaying.Name.." doesn't have a lyric")
@@ -1453,11 +1452,11 @@ if CLIENT then
                                             var vb = document.getElementsByClassName("vipBadge")[0];
                                             switch(type) {
                                                 case 10:
-                                                    vb.src = "https://gcm.tenmahw.com/resources/vip.png";
+                                                    vb.src = "https://api.nekogan.com/resources/vip.png";
                                                     vb.style.display = "inline-block";
                                                     break;
                                                 case 11:
-                                                    vb.src = "https://gcm.tenmahw.com/resources/bvip.png";
+                                                    vb.src = "https://api.nekogan.com/resources/svip.png";
                                                     vb.style.display = "inline-block";
                                                     break;
                                                 default:
@@ -1580,17 +1579,6 @@ if CLIENT then
                 else
                     self:SetAlpha(255)
                 end
-               --[[if GetSettings("CloudMusicUsedSince") == nil then
-                    SetSettings("CloudMusicUsedSince", os.time())
-                elseif GetSettings("CloudMusicUsedSince") >= 604800 then
-                    local panel = CreateOverlayPanel(350,400)
-                    local label = vgui.Create("DLabel", panel)
-                    label:Dock(TOP)
-                    label:SetText("你好，你已经使用了本插件有一段时间了，如果你喜欢这个插件的话，希望你能去Steam创意工坊点赞以支持作者。")
-                    label:SetFont("CloudMusicText")
-                    local workshop = vgui.Create("DButton", panel)
-                    
-                end]]
             end
         end
         function CloudMusic:GetVersion()
@@ -1784,9 +1772,19 @@ if CLIENT then
                 if self.Mode == "Email" then
                     self.Username:SetPos(10,75)
                     self.Username:SetSize(350-20,20)
+                    self.Password:SetPos(10,75+25)
+                    self.Password:SetSize(350-20,20)
+                    self.Login:SetPos(10,145)
+                    self.QRCode:SetPos(0,0)
+                    self.QRCode:SetSize(0,0)
                 elseif self.Mode == "Phone" then
-                    self.Username:SetPos(35,75)
-                    self.Username:SetSize(350-45,20)
+                    self.Username:SetPos(0,0)
+                    self.Username:SetSize(0,0)
+                    self.Password:SetPos(0,0)
+                    self.Password:SetSize(0,0)
+                    self.Login:SetPos(10,400-60)
+                    self.QRCode:SetPos(10,75)
+                    self.QRCode:SetSize(250,250)
                 end
             end
             panel.Title = vgui.Create("DLabel",panel)
@@ -1800,12 +1798,10 @@ if CLIENT then
             panel.ToggleMode = vgui.Create("DButton",panel)
             panel.ToggleMode:SetPos(10,50)
             panel.ToggleMode:SetSize(350-20,20)
-            panel.ToggleMode:SetDisabled(true)
-            // panel.ToggleMode:SetText("手机号登录暂不可用")
+            // panel.ToggleMode:SetDisabled(true)
             function panel.ToggleMode:Think()
                 if panel.Mode == "Email" then
                     self:CM_SetI18N("use_phone")
-                    // self:SetText("手机号登录暂不可用")
                 elseif panel.Mode == "Phone" then
                     self:CM_SetI18N("use_email")
                 end
@@ -1813,67 +1809,72 @@ if CLIENT then
             function panel.ToggleMode:DoClick()
                 if panel.Mode == "Email" then
                     panel.Mode = "Phone"
+
+                    http.Fetch("https://ncm.nekogan.com/login/qr/key?u="..LocalPlayer():SteamID64().."&time="..os.time(),function(body)
+                        local json = util.JSONToTable(body)
+                        if json["code"] ~= 200 then
+                            SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("getqrfailed"), GetText("ok")))
+                            return
+                        end
+                        if json["data"]["code"] ~= 200 or not json["data"]["unikey"] then
+                            SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("getqrfailed"), GetText("ok")))
+                            return
+                        end
+                        local unikey = json["data"]["unikey"]
+                        panel.QRKey:SetText(json["data"]["unikey"])
+                        http.Fetch("https://ncm.nekogan.com/login/qr/create?u="..LocalPlayer():SteamID64().."&key="..unikey.."&qrimg=true",function(body)
+                            local json = util.JSONToTable(body)
+                            if json["code"] ~= 200 then
+                                SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("getqrfailed"), GetText("ok")))
+                                return
+                            end
+                            if not json["data"]["qrimg"] then
+                                SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("getqrfailed"), GetText("ok")))
+                                return
+                            end
+
+                            panel.QRCode:SetHTML([[
+                                <!DOCTYPE HTML>
+                                <head>
+                                </head>
+                                <body>
+                                    <img src="]]..json["data"]["qrimg"]..[[" width="100%">
+                                </body>
+                            ]])
+                        end)
+                    end)
                 else
                     panel.Mode = "Email"
                 end
-                panel.Username:SetValue("")
             end
-            panel.PhoneAreaNum = vgui.Create("DTextEntry",panel)
-            panel.PhoneAreaNum:SetPos(10,75)
-            panel.PhoneAreaNum:SetSize(20,20)
-            panel.PhoneAreaNum:SetValue(86)
-            panel.PhoneAreaNum:SetNumeric(true)
+
             panel.Username = vgui.Create("DTextEntry",panel)
             panel.Username:SetPos(10,75)
             panel.Username:SetSize(350-20,20)
-            function panel.Username:Think()
-                if panel.Mode == "Email" then
-                    self:CM_SetI18N("email",I18N_PLACEHOLDER)
-                elseif panel.Mode == "Phone" then
-                    self:CM_SetI18N("phone",I18N_PLACEHOLDER)
-                end
-            end
+            panel.Username:CM_SetI18N("email",I18N_PLACEHOLDER)
             panel.Password = vgui.Create("DTextEntry",panel)
             panel.Password:SetPos(10,100)
             panel.Password:SetSize(350-20,20)
             panel.Password:CM_SetI18N("password",I18N_PLACEHOLDER)
-            --[[panel.Privacy = vgui.Create("DPanel", panel)
-            panel.Privacy:SetPos(10,125)
-            panel.Privacy:SetSize(350-20,20)
-            panel.Privacy.Select = vgui.Create("DCheckBox", panel.Privacy)
-            panel.Privacy.Text = vgui.Create("DLabel", panel.Privacy)
-            panel.Privacy.Text:SetPos(20,0)
-            function panel.Privacy.Text:CM_LangUpdate()
-                self:SizeToContents()
-            end
-            panel.Privacy.Text:CM_SetI18N("read_agreed")
-            panel.Privacy.Link = vgui.Create("DLabelURL", panel.Privacy)
-            function panel.Privacy.Link:CM_LangUpdate()
-                self:SizeToContents()
-                self:SetPos(20+panel.Privacy.Text:GetWide(),0)
-            end
-            panel.Privacy.Link:CM_SetI18N("privacy_policy")
-            panel.Privacy.Link:SizeToContents()
-            panel.Privacy.Link:SetColor(Color(6,72,255))
-            panel.Privacy.Link:SetURL("https://forum.m4tec.org/d/5-cloudmusic-for-garry-s-mod")]]
+
+            panel.QRCode = vgui.Create("DHTML",panel)
+            panel.QRKey = vgui.Create("DTextEntry",panel)
+            panel.QRKey:SetPos(0,0)
+            panel.QRKey:SetSize(0,0)
+            panel.QRKey:SetDisabled(true)
+
             panel.Login = vgui.Create("DButton",panel)
             panel.Login:SetPos(10,145)
             panel.Login:SetSize(350-20,20)
             panel.Login:CM_SetI18N("login")
             function panel.Login:DoClick()
-                --[[if not panel.Privacy.Select:GetChecked() then
-                    SetDMUISkin(Derma_Message(GetText("privacy_policy_warn"),GetText("warning"),GetText("ok")))
-                    return
-                end]]
-                panel.PhoneAreaNum:SetDisabled(true)
                 panel.Username:SetDisabled(true)
                 panel.Password:SetDisabled(true)
-                --panel.Privacy.Select:SetDisabled(true)
                 panel.ToggleMode:SetDisabled(true)
                 self:SetDisabled(true)
                 Print("Logging in...")
                 if panel.Mode == "Email" then
-                    TokenRequest("https://ncm.nekogan.com/login?u="..LocalPlayer():SteamID64().."&email="..panel.Username:GetValue():JavascriptSafe().."&password="..panel.Password:GetValue():JavascriptSafe().."&u="..LocalPlayer():SteamID64(),function(body)
+                    TokenRequest("https://ncm.nekogan.com/login?u="..LocalPlayer():SteamID64().."&email="..panel.Username:GetValue():JavascriptSafe().."&password="..panel.Password:GetValue():JavascriptSafe(),function(body)
                         local result = util.JSONToTable(body)
                         if not result or (result["code"] ~= 200 and not result["msg"]) then
                             SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
@@ -1893,42 +1894,46 @@ if CLIENT then
                         SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
                         Print("Login failed")
                     end,function()
-                        panel.PhoneAreaNum:SetDisabled(false)
                         panel.Username:SetDisabled(false)
                         panel.Password:SetDisabled(false)
-                        --panel.Privacy.Select:SetDisabled(false)
                         panel.ToggleMode:SetDisabled(false)
                         self:SetDisabled(false)
                     end)
                 else
-                    // TokenRequest("https://ncm.nekogan.com/login/cellphone?u="..LocalPlayer():SteamID64().."&phone="..panel.Username:GetValue():JavascriptSafe().."&password="..panel.Password:GetValue():JavascriptSafe().."&countrycode="..panel.PhoneAreaNum:GetValue().."&u="..LocalPlayer():SteamID64(),function(body)
-                    //     local result = util.JSONToTable(body)
-                    //     if result == nil then
-                    //         SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
-                    //         return
-                    //     end
-                    //     if result["code"] ~= 200 then
-                    //         PrintTable(result)
-                    //         SetDMUISkin(Derma_Message(GetText("loginfailed").."\n"..result["msg"], GetText("error"), GetText("ok")))
-                    //         return
-                    //     end
-                    //     SetSettings("CloudMusicUserToken",result["token"])
-                    //     SetDMUISkin(Derma_Message(GetText("loginsuccess",{"name",result["profile"]["nickname"]}), GetText("welcome"), GetText("ok")))
-                    //     InitUserInfo()
-                    //     HideOverlay()
-                    //     Print("User has logged in")
-                    //     panel:Remove()
-                    // end,function()
-                    //     SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
-                    //     Print("Login failed")
-                    // end,function()
-                    //     panel.PhoneAreaNum:SetDisabled(false)
-                    //     panel.Username:SetDisabled(false)
-                    //     panel.Password:SetDisabled(false)
-                    //     --panel.Privacy.Select:SetDisabled(false)
-                    //     panel.ToggleMode:SetDisabled(false)
-                    //     self:SetDisabled(false)
-                    // end)
+                    local qrkey = panel.QRKey:GetText()
+                    if not qrkey then
+                        SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
+                        Print("Login failed")
+                        return
+                    end
+                    http.Fetch("https://ncm.nekogan.com/login/qr/check?key="..qrkey.."&u="..LocalPlayer():SteamID64(),
+                    function(body)
+                        local json = util.JSONToTable(body)
+                        if json["code"] ~= 803 then
+                            SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
+                            Print("Login failed")
+                            return
+                        end
+
+                        local token = string.Split(json["cookie"], "MUSIC_U=")[2]
+                        token = string.Split(token, ";")[1]
+
+                        SetSettings("CloudMusicUserToken",token)
+                        SetDMUISkin(Derma_Message(GetText("loginsuccess"), GetText("welcome"), GetText("ok")))
+                        InitUserInfo()
+                        HideOverlay()
+                        Print("User has logged in")
+                        panel:Remove()
+                    end,function()
+                        SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
+                        Print("Login failed")
+                        return
+                    end,function()
+                        panel.Username:SetDisabled(false)
+                        panel.Password:SetDisabled(false)
+                        panel.ToggleMode:SetDisabled(false)
+                        self:SetDisabled(false)
+                    end)
                 end
             end
             panel.Cancel = vgui.Create("DButton",panel)
@@ -1940,7 +1945,6 @@ if CLIENT then
             end
             SetUISkin(panel)
             panel:ShowPanel()
-            // SetDMUISkin(Derma_Message("非官方延续版暂不可使用本功能。谢谢配合。", "提示", GetText("ok")))
         end
         CloudMusic.Logout = vgui.Create("DButton",CloudMusic)
         function CloudMusic.Logout:CM_LangUpdate()
@@ -2046,11 +2050,11 @@ if CLIENT then
             function panel.Badges:OnDocumentReady()
                 if userDetail["vipType"] == 10 then
                     panel.Badges:RunJavascript([[
-                        addBadge("https://gcm.tenmahw.com/resources/vip.png");
+                        addBadge("https://api.nekogan.com/resources/VIP.png");
                     ]])
                 elseif userDetail["vipType"] == 11 then
                     panel.Badges:RunJavascript([[
-                        addBadge("https://gcm.tenmahw.com/resources/bvip.png");
+                        addBadge("https://api.nekogan.com/resources/bvip.png");
                     ]])
                 end
             end
@@ -2173,7 +2177,6 @@ if CLIENT then
                 end
                 CloudMusic.PrevPage:SetVisible(false)
                 CloudMusic.NextPage:SetVisible(false)
-                // CloudMusic.Songlist:Resolve(obj["playlist"]["tracks"], true)
                 CloudMusic.Songlist:Resolve(obj["songs"], true)
                 CloudMusic.Songlist:SetVisible(true)
                 CloudMusic.Playlists:SetVisible(false)
@@ -2307,17 +2310,6 @@ if CLIENT then
                 SetTopFormsDisabled(false)
             end)
         end
-        --[[CloudMusic.OpenFM = vgui.Create("DButton",CloudMusic.Body)
-        function CloudMusic.OpenFM:CM_LangUpdate()
-            self:SizeToContents()
-            self:SetSize(self:GetWide()+3,20)
-            self:SetPos(CloudMusic.ShowUserPlaylists:GetPos()+CloudMusic.ShowUserPlaylists:GetWide()+5,19)
-        end
-        CloudMusic.OpenFM:CM_SetI18N("personal_fm")
-        CloudMusic.OpenFM.Paint = ButtonPaint
-        function CloudMusic.OpenFM:DoClick()
-            currentShowingPage = "FM"
-        end]]
         CloudMusic.Songlist = vgui.Create("DListView",CloudMusic.Body)
         do
             CloudMusic.Songlist:AddColumn(""):CM_SetI18N("song_name",I18N_COLUMN)
@@ -2459,7 +2451,7 @@ if CLIENT then
         function CloudMusic.Playlists:ShowMenu()
             local menu = DermaMenu(self)
             menu:AddOption(GetText("open"),function()
-                TokenRequest("https://gcm.tenmahw.com/resolve/playlist?u="..LocalPlayer():SteamID64().."&id="..self:GetSelected()[1]:GetColumnText(4), function(json)
+                TokenRequest("https://ncm.nekogan.com/playlist/detail?u="..LocalPlayer():SteamID64().."&id="..self:GetSelected()[1]:GetColumnText(4), function(json)
                     local obj = util.JSONToTable(json)
                     if obj["code"] ~= 200 then
                         SetDMUISkin(Derma_Message(GetText("playlistfailed"), GetText("error"), GetText("ok")))
@@ -2473,7 +2465,7 @@ if CLIENT then
                 end, function()SetDMUISkin(Derma_Message(GetText("playlistfailed"), GetText("error"), GetText("ok")))end)
             end):SetIcon("icon16/transmit.png")
             menu:AddOption(GetText("add_playlist_to_playlist"),function()
-                TokenRequest("https://gcm.tenmahw.com/resolve/playlist?u="..LocalPlayer():SteamID64().."&id="..self:GetSelected()[1]:GetColumnText(4), function(json)
+                TokenRequest("https://ncm.nekogan.com/playlist/detail?u="..LocalPlayer():SteamID64().."&id="..self:GetSelected()[1]:GetColumnText(4), function(json)
                     local obj = util.JSONToTable(json)
                     if obj["code"] ~= 200 then
                         SetDMUISkin(Derma_Message(GetText("playlistfailed"), GetText("error"), GetText("ok")))
@@ -2701,7 +2693,6 @@ if CLIENT then
             AddProgress("CloudMusicBuffering",self.CurrentPlaying.Name.." - "..self.CurrentPlaying.Artist,GetText("try_play"))
             GetSongURL(cId,function(url)
                 Print("Fetch song url successfully")
-                print(url)
                 sound.PlayURL(url, "noblock noplay", function(station,errid,errname)
                     buffering = false
                     RemoveProgress("CloudMusicBuffering")
@@ -3248,13 +3239,13 @@ if CLIENT then
                             if (type != "") {
                                 msg.classList.add(type);
                             }
-                            var iurl = "https://gcm.tenmahw.com/resources/info.png";
+                            var iurl = "https://api.nekogan.com/resources/info.png";
                             switch(type) {
                                 case "error":
-                                    iurl = "https://gcm.tenmahw.com/resources/error.png";
+                                    iurl = "https://api.nekogan.com/resources/error.png";
                                     break;
                                 case "success":
-                                    iurl = "https://gcm.tenmahw.com/resources/success.png";
+                                    iurl = "https://api.nekogan.com/resources/success.png";
                                     break;
                             }
                             var icon = document.createElement("img");
@@ -3300,7 +3291,7 @@ if CLIENT then
                             msg.classList.add(name);
                             var icon = document.createElement("img");
                             icon.classList.add("icon");
-                            icon.src = "https://gcm.tenmahw.com/resources/info.png";
+                            icon.src = "https://api.nekogan.com/resources/info.png";
                             msg.appendChild(icon);
                             var content = document.createElement("div");
                             content.innerText = message;
@@ -3369,7 +3360,6 @@ if CLIENT then
                     if i == #lrc or lrc[i+1].time > CloudMusic.CurrentChannel:GetTime()*1000 then
                         if lrc[i].time < CloudMusic.CurrentChannel:GetTime()*1000 then
                             mainLrc = line.value
-                            // print(CloudMusic.CurrentChannel:GetTime()*1000)
                             if not transLrc and i ~= #lrc then
                                 subLrc = lrc[i+1].value
                             end
