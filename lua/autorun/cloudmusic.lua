@@ -13,7 +13,7 @@ local function Print(msg,color)
     if color == nil then color = DEF_COLOR end
     MsgC(DEF_COLOR,"[",Color(106,204,255),"CloudMusic",DEF_COLOR,"] ",color,msg,"\n")
 end
-local CLOUDMUSIC_VER = "Unofficial API Extend 20240609" -- DO NOT modify unless you know WHAT ARE YOU DOING
+local CLOUDMUSIC_VER = "Unofficial API Extend 20250312" -- DO NOT modify unless you know WHAT ARE YOU DOING
 if CLIENT then
     local LANGUAGES = {
         ["zh-CN"] = {
@@ -171,7 +171,7 @@ if CLIENT then
             ["playerror"] = "无法播放 %name%",
             ["continue_error"] = "由于已经连续5次无法播放，将停止尝试",
             ["playerror_loop"] = "由于 %name% 无法播放，已切到下一首",
-            ["userinfofailed"] = "获取网易云用户信息失败\n可能是因为正在使用游客Token",
+            ["userinfofailed"] = "获取网易云用户信息失败",
             ["try_play"] = "正在尝试播放",
             ["empty_playlist"] = "播放列表为空",
             ["3dplay_no_perm"] = "你没有权限开启外放",
@@ -1111,9 +1111,13 @@ if CLIENT then
                     local result = util.JSONToTable(body)
                     if not result or not result["data"] or not result["data"][1] or not result["data"][1]["url"] then
                         if type(callback) == "function" then
-                            TokenRequest("https://ncm.nekogan.com/song/url?id="..id,function(b)
+                            http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
                                 data = util.JSONToTable(b)["data"][1]
-                                callback(data["url"])
+                                if data["url"] then
+                                    callback(data["url"])
+                                else
+                                    callback("")
+                                end
                             end)
                         end
                         if type(finally) == "function" then
@@ -1131,7 +1135,11 @@ if CLIENT then
                     if type(callback) == "function" then
                         http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
                             data = util.JSONToTable(b)["data"][1]
-                            callback(data["url"])
+                            if data["url"] then
+                                callback(data["url"])
+                            else
+                                callback("")
+                            end
                         end)
                     end
                     if type(finally) == "function" then
@@ -1140,9 +1148,13 @@ if CLIENT then
                 end)
             else
                 if type(callback) == "function" then
-                    TokenRequest("https://ncm.nekogan.com/song/url?id="..id.."&u="..LocalPlayer():SteamID64(),function(b)
+                    http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
                         data = util.JSONToTable(b)["data"][1]
-                        callback(data["url"])
+                        if data["url"] then
+                            callback(data["url"])
+                        else
+                            callback("")
+                        end
                     end)
                 end
                 if type(finally) == "function" then
@@ -1163,7 +1175,6 @@ if CLIENT then
                             station:Play()
                             net.Start("CloudMusicReqSync")
                             net.SendToServer()
-                            Print("Success to create 3D Channel. ")
                         else
                             Print("An error happend when playing music. "..errid.." : "..errname)
                         end
@@ -1346,19 +1357,6 @@ if CLIENT then
             --CloudMusic.OpenFM:SetVisible(false)
             CloudMusic.User:CM_RemoveI18N()
             if GetSettings("CloudMusicUserToken") == "" then
-                TokenRequest("https://ncm.nekogan.com/register/anonimous?u="..LocalPlayer():SteamID64().."&t="..os.time(),function(body)
-                    local json = util.JSONToTable(body)
-                    if json["code"] ~= 200 then
-                        SetDMUISkin(Derma_Message(GetText("loginfailed"), GetText("error"), GetText("ok")))
-                        Print("Login failed")
-                        return
-                    end
-
-                    local token = string.Split(json["cookie"], "MUSIC_A=")[2]
-                    token = string.Split(token, ";")[1]
-
-                    SetSettings("CloudMusicUserToken",token)
-                end)
                 Print("No user token, using default layout")
                 CloudMusic.Login:SetVisible(true)
             else

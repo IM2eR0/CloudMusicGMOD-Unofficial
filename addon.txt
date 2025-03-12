@@ -1,0 +1,12 @@
+"AddonInfo"
+{
+	"name" "ç½‘æ˜“äº‘éŸ³ä¹æ’­æ”¾å™¨"
+	"author_name" "Author Name"
+	"info" "{
+	"description": "Description",
+	"type": "servercontent",
+	"tags": [
+		"fun"
+	]
+}"
+}
