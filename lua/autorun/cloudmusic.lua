@@ -1106,60 +1106,18 @@ if CLIENT then
             end
         end
         local function GetSongURL(id,callback,finally,share)
-            if GetSettings("CloudMusicUseServer") then
-                TokenRequest("https://ncm.nekogan.com/song/url?id="..id..(share == nil and "" or "&share="..share),function(body)
-                    local result = util.JSONToTable(body)
-                    if not result or not result["data"] or not result["data"][1] or not result["data"][1]["url"] then
-                        if type(callback) == "function" then
-                            http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
-                                data = util.JSONToTable(b)["data"][1]
-                                if data["url"] then
-                                    callback(data["url"])
-                                else
-                                    callback("")
-                                end
-                            end)
-                        end
-                        if type(finally) == "function" then
-                            finally()
-                        end
-                        return
-                    end
-                    if type(callback) == "function" then
-                        callback(result["data"][1]["url"])
-                    end
-                    if type(finally) == "function" then
-                        finally()
-                    end
-                end,function()
-                    if type(callback) == "function" then
-                        http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
-                            data = util.JSONToTable(b)["data"][1]
-                            if data["url"] then
-                                callback(data["url"])
-                            else
-                                callback("")
-                            end
-                        end)
-                    end
-                    if type(finally) == "function" then
-                        finally()
+            if type(callback) == "function" then
+                TokenRequest("https://ncm.nekogan.com/song/url?id="..id,function(b)
+                    data = util.JSONToTable(b)["data"][1]
+                    if data["url"] then
+                        callback(data["url"])
+                    else
+                        callback("")
                     end
                 end)
-            else
-                if type(callback) == "function" then
-                    http.Fetch("https://ncm.nekogan.com/song/url?id="..id,function(b)
-                        data = util.JSONToTable(b)["data"][1]
-                        if data["url"] then
-                            callback(data["url"])
-                        else
-                            callback("")
-                        end
-                    end)
-                end
-                if type(finally) == "function" then
-                    finally()
-                end
+            end
+            if type(finally) == "function" then
+                finally()
             end
         end
         local function Create3DChannel(id,ply)
